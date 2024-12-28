@@ -10,11 +10,9 @@ class DashboardController extends Controller
     public function dashboard(Request $request)
     {
         if (Auth::user()->is_role == 1) {
-            echo "Admin dashboard";
-            die();
+            return view('dashboard.admin_list');
         } else if (Auth::user()->is_role == 2) {
-            echo "User dashboard";
-            die();
+            return view('dashboard.user_list');
         }
     }
 
