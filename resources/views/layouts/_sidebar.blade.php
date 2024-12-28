@@ -18,7 +18,8 @@
                         </a> </li>
 
                     <li class="nav-header">MASTER</li>
-                    <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon fa fa-cube"></i>
+                    <li class="nav-item"> <a href="{{ url('admin/category') }}" class="nav-link"> <i
+                                class="nav-icon fa fa-cube"></i>
                             <p>Category</p>
                         </a> </li>
 
