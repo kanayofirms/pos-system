@@ -18,4 +18,17 @@ class categoryController extends Controller
 
         return response()->json($categories);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'category_name' => 'required|string|max:255',
+        ]);
+
+        $category = new CategoryModel();
+        $category->category_name = $request->category_name;
+        $category->save();
+
+        return response()->json(['success' => 'Category added successfully.']);
+    }
 }
