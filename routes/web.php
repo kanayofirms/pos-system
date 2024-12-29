@@ -13,6 +13,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/category', [CategoryController::class, 'index']);
     Route::get('admin/category/data', [CategoryController::class, 'getCategories']);
     Route::post('admin/category/store', [CategoryController::class, 'store']);
+
+    // Edit and Update category
+    Route::get('admin/category/edit/{id}', [CategoryController::class, 'edit']);
 });
 
 Route::group(['middleware' => 'user'], function () {
