@@ -24,6 +24,19 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.css"><!--end::Required Plugin(AdminLTE)--><!-- apexcharts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
         integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous">
+
+    <style type="text/css">
+        .flashMessage {
+            display: none;
+            /* Initially hidden */
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            /* Above most content */
+            min-width: 250px;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
