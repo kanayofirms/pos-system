@@ -16,6 +16,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     // Edit and Update category
     Route::get('admin/category/edit/{id}', [CategoryController::class, 'edit']);
+    Route::post('admin/category/update/{id}', [CategoryController::class, 'update']);
 });
 
 Route::group(['middleware' => 'user'], function () {
