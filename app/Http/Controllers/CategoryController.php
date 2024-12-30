@@ -31,4 +31,23 @@ class categoryController extends Controller
 
         return response()->json(['success' => 'Category added successfully.']);
     }
+
+    public function edit($id)
+    {
+        $category = CategoryModel::findOrFail($id);
+        return response()->json($category);
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'category_name' => 'required|string|max:255',
+        ]);
+
+        $category = CategoryModel::findOrFail($id);
+        $category->category_name = $request->category_name;
+        $category->save();
+
+        return response()->json(['success' => 'Category Successfully Updated.']);
+    }
 }
