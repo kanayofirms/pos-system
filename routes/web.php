@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -10,16 +11,15 @@ Route::post('login_post', [AuthController::class, 'login_post']);
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+
     Route::get('admin/category', [CategoryController::class, 'index']);
     Route::get('admin/category/data', [CategoryController::class, 'getCategories']);
     Route::post('admin/category/store', [CategoryController::class, 'store']);
-
-    // Edit and Update category
     Route::get('admin/category/edit/{id}', [CategoryController::class, 'edit']);
     Route::post('admin/category/update/{id}', [CategoryController::class, 'update']);
-
-    // Delete category
     Route::delete('admin/category/delete/{id}', [CategoryController::class, 'destroy']);
+
+    Route::get('admin/product', [ProductController::class, 'index']);
 });
 
 Route::group(['middleware' => 'user'], function () {
