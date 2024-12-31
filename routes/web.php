@@ -20,6 +20,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('admin/category/delete/{id}', [CategoryController::class, 'destroy']);
 
     Route::get('admin/product', [ProductController::class, 'index']);
+    Route::post('admin/product/store', [ProductController::class, 'store'])->name('product.store');
 });
 
 Route::group(['middleware' => 'user'], function () {
