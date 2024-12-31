@@ -42,6 +42,7 @@
                                             <th>Category Name</th>
                                             <th>Created At</th>
                                             <th>Updated At</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -104,30 +105,112 @@
                                 let updatedAt = dayjs(category.updated_at).format(
                                     'MMM DD, YYYY h:mm A');
                                 tableBody += `
-                                <tr>
-                                    <td>${index + 1}</td>
-                                    <td>${category.category_name}</td>
-                                    <td>${createdAt}</td>
-                                    <td>${updatedAt}</td>
-                                </tr>
-                            `;
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${category.category_name}</td>
+                                <td>${createdAt}</td>
+                                <td>${updatedAt}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm edit-btn" data-id="${category.id}">Edit</button>
+                                    <button class="btn btn-danger btn-sm delete-btn" data-id="${category.id}">Delete</button>
+                                </td>
+                            </tr>
+                        `;
                             });
                         } else {
                             tableBody = `
-                            <tr>
-                                <td colspan="4" class="text-center">No categories available</td>
-                            </tr>
-                        `;
+                        <tr>
+                            <td colspan="5" class="text-center">No categories available</td>
+                        </tr>
+                    `;
                         }
                         $('#category-table tbody').html(tableBody);
+
+                        // Attach event for the edit button
+                        $('.edit-btn').on('click', handleEdit);
+                        // Attach event for the delete button
+                        $('.delete-btn').on('click', handleDelete);
                     },
                     error: function(xhr) {
                         console.error('Failed to fetch categories:', xhr.responseText);
                     }
                 });
             }
+
+            // Edit
+            function handleEdit() {
+                const id = $(this).data('id');
+                $.ajax({
+                    url: `{{ url('admin/category/edit') }}/${id}`,
+                    type: "GET",
+                    success: function(category) {
+                        $('#category_name').val(category.category_name); // Corrected line
+                        $('#addCategoryModal').modal('show');
+
+                        // Update category on form submit
+                        $('#categoryForm').off('submit').on('submit', function(e) {
+                            e.preventDefault();
+                            const formData = $(this).serialize();
+                            $.ajax({
+                                url: `{{ url('admin/category/update') }}/${id}`,
+                                type: "POST",
+                                data: formData,
+                                success: function(response) {
+                                    $('#addCategoryModal').modal('hide');
+                                    fetchCategories
+                                        (); // Fetch categories again after updating
+                                    $('.flashMessage')
+                                        .text(response.success)
+                                        .fadeIn()
+                                        .delay(3000)
+                                        .fadeOut();
+                                },
+                                error: function(xhr) {
+                                    alert('Failed to update category.');
+                                }
+                            });
+                        });
+                    },
+                    error: function(xhr) {
+                        alert('Failed to fetch category details.');
+                    }
+                });
+            }
+
+            // delete
+            function handleDelete() {
+                const id = $(this).data('id');
+                if (confirm('Are you sure you want to delete this category?')) {
+                    $.ajax({
+                        url: `{{ url('admin/category/delete') }}/${id}`,
+                        type: "POST", // Laravel often uses POST with a _method override for DELETE
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: "DELETE" // Indicates the intended HTTP method
+                        },
+                        success: function(response) {
+                            fetchCategories(); // Refresh the category list
+
+                            $('.flashMessage')
+                                .text(response.success)
+                                .fadeIn()
+                                .delay(3000)
+                                .fadeOut();
+
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        },
+                        error: function(xhr) {
+                            alert('Failed to delete category.');
+                        }
+                    });
+                }
+            }
+
         });
     </script>
+
     <script>
         $(document).ready(function() {
             $('#categoryForm').on('submit', function(e) {
