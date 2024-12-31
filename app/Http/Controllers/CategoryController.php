@@ -50,4 +50,13 @@ class categoryController extends Controller
 
         return response()->json(['success' => 'Category Successfully Updated.']);
     }
+
+    public function destroy($id)
+    {
+        $category = CategoryModel::findOrFail($id);
+        $category->delete(); // Call the delete method on the model instance
+
+        return response()->json(['success' => 'Category deleted successfully.']);
+    }
+
 }
