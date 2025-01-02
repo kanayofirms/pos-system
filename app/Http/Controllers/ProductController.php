@@ -43,4 +43,23 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'category_id' => 'required|exists:category,id',
+            'product_code' => 'required|string|max:255|unique:product,product_code,' . $id,
+            'name_product' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'purchase_price' => 'required|numeric|min:0',
+            'selling_price' => 'required|numeric|min:0',
+            'discount' => 'required|numeric|min:0|max:100',
+            'stock' => 'required|integer|min:0',
+        ]);
+
+        $product = ProductModel::findOrFail($id);
+        $product->update($validated);
+
+        return response()->json(['message' => 'Product successfully updated.']);
+    }
+
 }
