@@ -23,6 +23,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/product/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('admin/product/fetch', [ProductController::class, 'fetchProducts'])->name('product.fetch');
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit']);
+    Route::post('admin/product/update/{id}', [ProductController::class, 'update']);
 });
 
 Route::group(['middleware' => 'user'], function () {
