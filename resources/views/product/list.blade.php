@@ -200,6 +200,8 @@
     </td>
 </tr>`;
                             tbody.append(row);
+
+                            $('.edit-btn').on('click', handleEdit);
                         });
                     } else {
                         alert('Unexpected response format.');
@@ -208,6 +210,27 @@
                 error: function(xhr, status, error) {
                     console.error('Error fetching products:', status, error);
                     alert('Failed to fetch product.');
+                }
+            });
+        }
+
+        // Edit product
+        function handleEdit() {
+            const id = $(this).data('id');
+            $.ajax({
+                url: `{{ url('admin/product/edit') }}/${id}`,
+                method: "GET",
+
+                success: function(response) {
+                    $('#category_id').val(response.category_id);
+                    $('#product_code').val(response.product_code);
+                    $('#name_product').val(response.name_product);
+                    $('#brand').val(response.brand);
+                    $('#purchase_price').val(response.purchase_price);
+                    $('#selling_price').val(response.selling_price);
+                    $('#discount').val(response.discount);
+                    $('#stock').val(response.stock);
+                    $('#addProductModal').modal('show');
                 }
             });
         }
