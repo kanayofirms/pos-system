@@ -259,6 +259,31 @@
             });
         }
 
+        // Delete product 
+        $(document).on('click', '.delete-btn', function() {
+            const id = $(this).data('id');
+            if (confirm('Are you sure you want to delete this product?')) {
+                $.ajax({
+                    url: `{{ url('admin/product/delete') }}/${id}`,
+                    method: "POST", // Use POST for Laravel method spoofing
+                    data: {
+                        // Make sure the CSRF token is available in the app.blade.php HTML <head> tag:
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        _method: 'DELETE'
+                    },
+                    success: function(response) {
+                        // alert(response.message);
+                        $('.flashMessage').html(response.message).fadeIn().delay(2000).fadeOut();
+                        fetchProducts(); // Refresh the product list
+                    },
+                    error: function(xhr) {
+                        alert('Failed to delete product: ' + xhr.responseText);
+                    }
+                });
+            }
+        });
+
+
 
         // Fetch products on page load
         $(document).ready(function() {
