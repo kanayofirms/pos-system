@@ -39,14 +39,21 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Product Name</th>
+                                            <th>Category Name</th>
+                                            <th>Product Code</th>
+                                            <th>Name Product</th>
+                                            <th>Brand</th>
+                                            <th>Purchase Price</th>
+                                            <th>Selling Price</th>
+                                            <th>Discount</th>
+                                            <th>Stock</th>
                                             <th>Created At</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- dynamic data insert --}}
+                                        {{-- dynamic data insert here --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -146,6 +153,8 @@
                             .fadeOut();
                         $('#productForm')[0].reset();
                         $('#addProductModal').modal('hide');
+
+                        fetchProducts();
                     },
                     error: function(xhr) {
                         const errors = xhr.responseJSON.errors;
@@ -159,6 +168,62 @@
                             .fadeIn();
                     }
                 });
+            });
+        });
+
+        function fetchProducts() {
+            $.ajax({
+                url: "{{ route('product.fetch') }}",
+                method: "GET",
+                success: function(response) {
+                    const tbody = $('#product-table tbody');
+                    tbody.empty();
+
+                    if (Array.isArray(response)) {
+                        response.forEach((product, index) => {
+                            const row = `
+<tr>
+    <td>${index + 1}</td>
+    <td>${product.category ? product.category.category_name : 'N/A'}</td>
+    <td>${product.product_code || 'N/A'}</td>
+    <td>${product.name_product || 'N/A'}</td>
+    <td>${product.brand || 'N/A'}</td>
+    <td>${product.purchase_price || 'N/A'}</td>
+    <td>${product.selling_price || 'N/A'}</td>
+    <td>${product.discount || 'N/A'}</td>
+    <td>${product.stock || 'N/A'}</td>
+    <td>${product.created_at ? dayjs(product.created_at).format('YYYY-MM-DD') : 'N/A'}</td>
+    <td>${product.updated_at ? dayjs(product.updated_at).format('YYYY-MM-DD') : 'N/A'}</td>
+    <td>
+        <button class="btn btn-sm btn-warning edit-btn" data-id="${product.id}">Edit</button>  
+        <button class="btn btn-sm btn-danger delete-btn" data-id="${product.id}">Delete</button>  
+    </td>
+</tr>`;
+                            tbody.append(row);
+                        });
+                    } else {
+                        alert('Unexpected response format.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching products:', status, error);
+                    alert('Failed to fetch product.');
+                }
+            });
+        }
+
+        // Fetch products on page load
+        $(document).ready(function() {
+            fetchProducts();
+            // Example for event delegation
+            $(document).on('click', '.edit-btn', function() {
+                const productId = $(this).data('id');
+                console.log('Edit product:', productId);
+            });
+
+            $(document).on('click', '.delete-btn', function() {
+                const productId = $(this).data('id');
+                console.log('Delete product:', productId);
             });
         });
     </script>
