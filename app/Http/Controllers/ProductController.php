@@ -31,4 +31,10 @@ class ProductController extends Controller
         return response()->json(['message' => 'Product successfully added.']);
     }
 
+    public function fetchProducts()
+    {
+        $products = ProductModel::with('category')->get();
+        return response()->json($products);
+    }
+
 }
