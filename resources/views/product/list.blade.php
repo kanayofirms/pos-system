@@ -220,7 +220,6 @@
             $.ajax({
                 url: `{{ url('admin/product/edit') }}/${id}`,
                 method: "GET",
-
                 success: function(response) {
                     $('#category_id').val(response.category_id);
                     $('#product_code').val(response.product_code);
@@ -231,9 +230,35 @@
                     $('#discount').val(response.discount);
                     $('#stock').val(response.stock);
                     $('#addProductModal').modal('show');
+
+                    // Unbind previous submit handler before attaching a new one
+                    $('#productForm').off('submit').on('submit', function(e) {
+                        e.preventDefault();
+                        const formData = $(this).serialize();
+                        $.ajax({
+                            url: `{{ url('admin/product/update') }}/${id}`,
+                            type: "POST",
+                            data: formData,
+
+                            success: function(response) {
+                                $('.flashMessage').html(response.message).fadeIn().delay(
+                                    2000).fadeOut();
+                                $('#productForm')[0].reset();
+                                $('#addProductModal').modal('hide');
+                                fetchProducts();
+                            },
+                            error: function(xhr) {
+                                alert('Failed to update product: ' + xhr.responseText);
+                            }
+                        });
+                    });
+                },
+                error: function() {
+                    alert('Failed to fetch product data');
                 }
             });
         }
+
 
         // Fetch products on page load
         $(document).ready(function() {
