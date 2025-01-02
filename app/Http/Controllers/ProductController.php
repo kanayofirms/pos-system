@@ -37,4 +37,10 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function edit($id)
+    {
+        $product = ProductModel::findOrFail($id);
+        return response()->json($product);
+    }
+
 }
