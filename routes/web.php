@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -25,6 +26,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit']);
     Route::post('admin/product/update/{id}', [ProductController::class, 'update']);
     Route::delete('admin/product/delete/{id}', [ProductController::class, 'destroy']);
+
+    // Member start
+    Route::get('admin/member', [MemberController::class, 'index']);
+    // Member end
 });
 
 Route::group(['middleware' => 'user'], function () {
