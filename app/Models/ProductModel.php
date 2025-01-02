@@ -22,4 +22,9 @@ class ProductModel extends Model
         'discount',
         'stock',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(CategoryModel::class, 'category_id');
+    }
 }
