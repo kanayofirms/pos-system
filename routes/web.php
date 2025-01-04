@@ -29,6 +29,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     // Member start
     Route::get('admin/member', [MemberController::class, 'index']);
+    Route::get('admin/member/add', [MemberController::class, 'add']);
     // Member end
 });
 
