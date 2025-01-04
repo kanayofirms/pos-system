@@ -28,7 +28,8 @@
                             <p>Product</p>
                         </a> </li>
 
-                    <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon fa fa-id-card"></i>
+                    <li class="nav-item"> <a href="{{ url('admin/member') }}" class="nav-link"> <i
+                                class="nav-icon fa fa-id-card"></i>
                             <p>Members</p>
                         </a> </li>
 
