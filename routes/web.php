@@ -31,6 +31,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/member', [MemberController::class, 'index']);
     Route::get('admin/member/add', [MemberController::class, 'add']);
     Route::post('admin/member/add', [MemberController::class, 'store']);
+    Route::get('admin/member/edit/{id}', [MemberController::class, 'edit']);
     // Member end
 });
 
