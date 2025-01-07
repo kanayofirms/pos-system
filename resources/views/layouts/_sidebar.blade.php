@@ -12,23 +12,27 @@
 
                 @if (Auth::user()->is_role == 1)
                     {{-- Admin menu --}}
-                    <li class="nav-item"> <a href="{{ url('admin/dashboard') }}" class="nav-link active"> <i
+                    <li class="nav-item"> <a href="{{ url('admin/dashboard') }}"
+                            class="nav-link @if (Request::segment(2) == 'dashboard') active @endif"> <i
                                 class="nav-icon fa fa-dashboard"></i>
                             <p>Dashboard</p>
                         </a> </li>
 
                     <li class="nav-header">MASTER</li>
-                    <li class="nav-item"> <a href="{{ url('admin/category') }}" class="nav-link"> <i
+                    <li class="nav-item"> <a href="{{ url('admin/category') }}"
+                            class="nav-link @if (Request::segment(2) == 'category') active @endif"> <i
                                 class="nav-icon fa fa-cube"></i>
                             <p>Category</p>
                         </a> </li>
 
-                    <li class="nav-item"> <a href="{{ url('admin/product') }}" class="nav-link"> <i
+                    <li class="nav-item"> <a href="{{ url('admin/product') }}"
+                            class="nav-link @if (Request::segment(2) == 'product') active @endif"> <i
                                 class="nav-icon fa fa-cubes"></i>
                             <p>Product</p>
                         </a> </li>
 
-                    <li class="nav-item"> <a href="{{ url('admin/member') }}" class="nav-link"> <i
+                    <li class="nav-item"> <a href="{{ url('admin/member') }}"
+                            class="nav-link @if (Request::segment(2) == 'member') active @endif"> <i
                                 class="nav-icon fa fa-id-card"></i>
                             <p>Members</p>
                         </a> </li>
