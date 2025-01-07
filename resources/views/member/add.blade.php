@@ -55,7 +55,7 @@
 
                                 </div>
                                 <div class="card-footer"> <button type="submit" class="btn btn-warning">Submit</button>
-                                    <a href="" class="btn float-end">Cancel</a>
+                                    <a href="{{ url('admin/member') }}" class="btn btn-primary float-end">Cancel</a>
                                 </div>
                             </form>
                         </div>
