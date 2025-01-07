@@ -86,4 +86,16 @@ class MemberController extends Controller
         $data['getRecord'] = MemberModel::find($id);
         return view('member.edit', $data);
     }
+
+    public function update($id, Request $request)
+    {
+        $save = MemberModel::find($id);
+        $save->name_member = trim($request->name_member);
+        $save->address = trim($request->address);
+        $save->telephone = trim($request->telephone);
+        $save->save();
+
+        // Redirect with success message
+        return redirect('admin/member')->with('success', 'Member successfully updated.');
+    }
 }
