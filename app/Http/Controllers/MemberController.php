@@ -81,4 +81,9 @@ class MemberController extends Controller
         return redirect('admin/member')->with('success', 'Member successfully created.');
     }
 
+    public function edit($id, Request $request)
+    {
+        $data['getRecord'] = MemberModel::find($id);
+        return view('member.edit', $data);
+    }
 }
