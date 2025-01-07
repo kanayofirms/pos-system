@@ -98,4 +98,12 @@ class MemberController extends Controller
         // Redirect with success message
         return redirect('admin/member')->with('success', 'Member successfully updated.');
     }
+
+    public function delete($id)
+    {
+        $delete = MemberModel::find($id);
+        $delete->delete();
+
+        return redirect('admin/member')->with('error', "Record successfully deleted.");
+    }
 }
