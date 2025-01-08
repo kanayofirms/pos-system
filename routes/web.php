@@ -40,6 +40,7 @@ Route::group(['middleware' => 'admin'], function () {
     // Supplier start 
     Route::get('admin/supplier', [SupplierController::class, 'index']);
     Route::get('admin/supplier/add', [SupplierController::class, 'add']);
+    Route::post('admin/supplier/add', [SupplierController::class, 'store']);
     Route::get('admin/supplier/delete/{id}', [SupplierController::class, 'delete']);
     // Supplier end 
 });
