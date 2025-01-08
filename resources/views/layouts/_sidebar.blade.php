@@ -37,8 +37,10 @@
                             <p>Members</p>
                         </a> </li>
 
-                    <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon fa fa-truck"></i>
-                            <p>Suppliers</p>
+                    <li class="nav-item"> <a href="{{ url('admin/supplier') }}"
+                            class="nav-link @if (Request::segment(2) == 'supplier') active @endif"> <i
+                                class="nav-icon fa fa-truck"></i>
+                            <p>Supplier</p>
                         </a> </li>
 
                     <li class="nav-header">TRANSACTION</li>
