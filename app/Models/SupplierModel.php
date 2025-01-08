@@ -51,4 +51,20 @@ class SupplierModel extends Model
     {
         return self::find($id);
     }
+
+    static public function recordInsert($request)
+    {
+        try {
+            $save = new self();
+            $save->supplier_name = trim($request->supplier_name);
+            $save->supplier_telephone = trim($request->supplier_telephone);
+            $save->supplier_address = trim($request->supplier_address);
+            $save->save();
+
+        } catch (Exception $e) {
+            \Log::error("Error saving record: " . $e->getMessage());
+            throw $e;
+
+        }
+    }
 }
