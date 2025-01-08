@@ -20,4 +20,9 @@ class SupplierController extends Controller
 
         return redirect('admin/supplier')->with('error', 'Supplier successfully deleted.');
     }
+
+    public function add(Request $request)
+    {
+        return view('supplier.add');
+    }
 }
