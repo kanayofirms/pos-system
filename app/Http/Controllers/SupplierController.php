@@ -12,4 +12,12 @@ class SupplierController extends Controller
         $data['getRecord'] = SupplierModel::getRecord();
         return view('supplier.list', $data);
     }
+
+    public function delete($id)
+    {
+        $deleteRecord = SupplierModel::getSingle($id);
+        $deleteRecord->delete();
+
+        return redirect('admin/supplier')->with('error', 'Supplier successfully deleted.');
+    }
 }
