@@ -25,4 +25,11 @@ class SupplierController extends Controller
     {
         return view('supplier.add');
     }
+
+    public function store(Request $request)
+    {
+        SupplierModel::recordInsert($request);
+
+        return redirect('admin/supplier')->with('success', 'Supplier successfully added.');
+    }
 }
