@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -35,6 +36,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/member/edit/{id}', [MemberController::class, 'update']);
     Route::get('admin/member/delete/{id}', [MemberController::class, 'delete']);
     // Member end
+
+    // Supplier start 
+    Route::get('admin/supplier', [SupplierController::class, 'index']);
+    // Supplier end 
 });
 
 Route::group(['middleware' => 'user'], function () {
