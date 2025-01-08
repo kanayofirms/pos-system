@@ -32,4 +32,10 @@ class SupplierController extends Controller
 
         return redirect('admin/supplier')->with('success', 'Supplier successfully added.');
     }
+
+    public function edit($id)
+    {
+        $data['getRecord'] = SupplierModel::getSingle($id);
+        return view('supplier.edit', $data);
+    }
 }
