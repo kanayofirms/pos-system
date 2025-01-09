@@ -16,4 +16,14 @@ class ExpenseController extends Controller
     {
         return view('expense.add');
     }
+
+    public function store(Request $request)
+    {
+        $save = new ExpenseModel;
+        $save->description = trim($request->description);
+        $save->amount = trim($request->amount);
+        $save->save();
+
+        return redirect('admin/expense')->with('success', 'Expense successfully created.');
+    }
 }
