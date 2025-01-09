@@ -52,4 +52,10 @@ class ExpenseController extends Controller
 
         return redirect('admin/expense')->with('success', 'Expense successfully created.');
     }
+
+    public function edit($id)
+    {
+        $data['getRecord'] = ExpenseModel::find($id);
+        return view('expense.edit', $data);
+    }
 }
