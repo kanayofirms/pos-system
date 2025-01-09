@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Request;
 
+
 class SupplierModel extends Model
 {
     use HasFactory;
 
     protected $table = 'supplier';
+
 
     static public function getRecord()
     {
@@ -50,7 +52,9 @@ class SupplierModel extends Model
     static public function getSingle($id)
     {
         return self::find($id);
+
     }
+
 
     static public function recordInsert($request)
     {
@@ -67,4 +71,40 @@ class SupplierModel extends Model
 
         }
     }
+
+    static public function recordUpdate($id, $request)
+    {
+        try {
+            // Get the supplier record by ID
+            $save = self::getSingle($id);
+
+            // Check if the record exists
+            if (!$save) {
+                throw new \Exception("Supplier with ID {$id} not found.");
+            }
+
+            // Validate and trim the input fields
+            $supplierName = trim($request->supplier_name);
+            $supplierTelephone = trim($request->supplier_telephone);
+            $supplierAddress = trim($request->supplier_address);
+
+            // Check if the trimmed fields are not empty or null
+            if (empty($supplierName) || empty($supplierTelephone) || empty($supplierAddress)) {
+                throw new \Exception("Supplier fields cannot be empty.");
+            }
+
+            // Update the supplier's fields
+            $save->supplier_name = $supplierName;
+            $save->supplier_telephone = $supplierTelephone;
+            $save->supplier_address = $supplierAddress;
+
+            // Save the updated record
+            $save->save();
+        } catch (\Exception $e) {
+            // Log the error
+            \Log::error("Error updating record (ID: {$id}): " . $e->getMessage());
+            throw $e;
+        }
+    }
+
 }
