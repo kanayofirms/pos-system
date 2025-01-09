@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExpenseController;
 
 Route::get('/', [AuthController::class, 'login']);
 Route::post('login_post', [AuthController::class, 'login_post']);
@@ -45,6 +46,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/supplier/edit/{id}', [SupplierController::class, 'update']);
     Route::get('admin/supplier/delete/{id}', [SupplierController::class, 'delete']);
     // Supplier end 
+
+    // Expense start
+    Route::get('admin/expense', [ExpenseController::class, 'index']);
+    // Expense end
 });
 
 Route::group(['middleware' => 'user'], function () {
