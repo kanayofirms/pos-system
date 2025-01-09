@@ -49,6 +49,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     // Expense start
     Route::get('admin/expense', [ExpenseController::class, 'index']);
+    Route::get('admin/expense/add', [ExpenseController::class, 'add']);
     // Expense end
 });
 
