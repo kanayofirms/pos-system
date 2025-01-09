@@ -11,4 +11,9 @@ class ExpenseController extends Controller
     {
         return view('expense.list');
     }
+
+    public function add(Request $request)
+    {
+        return view('expense.add');
+    }
 }
