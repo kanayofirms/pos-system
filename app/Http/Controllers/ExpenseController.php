@@ -68,4 +68,12 @@ class ExpenseController extends Controller
 
         return redirect('admin/expense')->with('success', 'Expense successfully updated.');
     }
+
+    public function delete($id)
+    {
+        $recordDelete = ExpenseModel::find($id);
+        $recordDelete->delete();
+
+        return redirect()->back()->with('error', 'Record successfully deleted.');
+    }
 }
