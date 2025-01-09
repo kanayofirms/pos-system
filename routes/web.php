@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\PurchaseController;
 
 Route::get('/', [AuthController::class, 'login']);
 Route::post('login_post', [AuthController::class, 'login_post']);
@@ -55,6 +56,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/expense/edit/{id}', [ExpenseController::class, 'update']);
     Route::get('admin/expense/delete/{id}', [ExpenseController::class, 'delete']);
     // Expense end
+
+    // Purchase start
+    Route::get('admin/purchase', [PurchaseController::class, 'index']);
+    // Purchase end
 });
 
 Route::group(['middleware' => 'user'], function () {
