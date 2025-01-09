@@ -35,7 +35,19 @@ class SupplierController extends Controller
 
     public function edit($id)
     {
+        // Get the supplier record by ID
         $data['getRecord'] = SupplierModel::getSingle($id);
+
+
+
+        // Return the edit view with the record
         return view('supplier.edit', $data);
+    }
+
+    public function update($id, Request $request)
+    {
+        SupplierModel::recordUpdate($id, $request);
+
+        return redirect('admin/supplier')->with('success', 'Record successfully updated.');
     }
 }
