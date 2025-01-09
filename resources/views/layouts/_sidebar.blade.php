@@ -44,7 +44,9 @@
                         </a> </li>
 
                     <li class="nav-header">TRANSACTION</li>
-                    <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon fa fa-adjust"></i>
+                    <li class="nav-item"> <a href="{{ url('admin/expense') }}"
+                            class="nav-link  @if (Request::segment(2) == 'expense') active @endif"> <i
+                                class="nav-icon fa fa-adjust"></i>
                             <p>Expenses</p>
                         </a> </li>
 
