@@ -7,9 +7,35 @@ use App\Models\ExpenseModel;
 
 class ExpenseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('expense.list');
+        $getRecord = ExpenseModel::orderBy('id', 'desc');
+
+        // Search start
+        if ($request->id) {
+            $getRecord = $getRecord->where('id', '=', $request->id);
+        }
+
+        if ($request->description) {
+            $getRecord = $getRecord->where('description', 'like', '%' . $request->description . '%');
+        }
+
+        if ($request->amount) {
+            $getRecord = $getRecord->where('amount', 'like', '%' . $request->amount . '%');
+        }
+
+        if ($request->created_at) {
+            $getRecord = $getRecord->where('created_at', 'like', '%' . $request->created_at . '%');
+        }
+
+        if ($request->updated_at) {
+            $getRecord = $getRecord->where('updated_at', 'like', '%' . $request->updated_at . '%');
+        }
+        // Search start
+
+        $getRecord = $getRecord->paginate(20);
+        $data['getRecord'] = $getRecord;
+        return view('expense.list', $data);
     }
 
     public function add(Request $request)
