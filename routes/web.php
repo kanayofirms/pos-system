@@ -52,6 +52,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/expense/add', [ExpenseController::class, 'add']);
     Route::post('admin/expense/add', [ExpenseController::class, 'store']);
     Route::get('admin/expense/edit/{id}', [ExpenseController::class, 'edit']);
+    Route::post('admin/expense/edit/{id}', [ExpenseController::class, 'update']);
     // Expense end
 });
 
