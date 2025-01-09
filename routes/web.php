@@ -42,6 +42,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/supplier/add', [SupplierController::class, 'add']);
     Route::post('admin/supplier/add', [SupplierController::class, 'store']);
     Route::get('admin/supplier/edit/{id}', [SupplierController::class, 'edit']);
+    Route::post('admin/supplier/edit/{id}', [SupplierController::class, 'update']);
     Route::get('admin/supplier/delete/{id}', [SupplierController::class, 'delete']);
     // Supplier end 
 });
