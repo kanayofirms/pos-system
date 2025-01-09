@@ -33,41 +33,44 @@
                                     <div class="row">
                                         <div class="form-group col-md-1">
                                             <label for="">ID</label>
-                                            <input type="text" name="id" class="form-control" placeholder="ID">
+                                            <input type="text" value="{{ Request()->id }}" name="id"
+                                                class="form-control" placeholder="ID">
                                         </div>
 
                                         <div class="form-group col-md-2">
                                             <label for="">Code Member</label>
-                                            <input type="text" name="code_member" class="form-control"
-                                                placeholder="Enter Code Member">
+                                            <input type="text" value="{{ Request()->code_member }}" name="code_member"
+                                                class="form-control" placeholder="Enter Code Member">
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label for="">Name Member</label>
-                                            <input type="text" name="name_member" class="form-control"
-                                                placeholder="Enter Name Member">
+                                            <input type="text" value="{{ Request()->name_member }}" name="name_member"
+                                                class="form-control" placeholder="Enter Name Member">
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label>Address</label>
-                                            <input type="text" name="address" class="form-control"
-                                                placeholder="Enter Address">
+                                            <input type="text" value="{{ Request()->address }}" name="address"
+                                                class="form-control" placeholder="Enter Address">
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <label>Telephone</label>
-                                            <input type="number" name="telephone" class="form-control"
-                                                placeholder="Enter Telephone">
+                                            <input type="number" value="{{ Request()->telephone }}" name="telephone"
+                                                class="form-control" placeholder="Enter Telephone">
                                         </div>
 
                                         <div class="form-group col-md-3" style="margin-top: 15px;">
                                             <label>Created At</label>
-                                            <input type="date" name="created_at" class="form-control">
+                                            <input type="date" value="{{ Request()->created_at }}" name="created_at"
+                                                class="form-control">
                                         </div>
 
                                         <div class="form-group col-md-3" style="margin-top: 15px;">
                                             <label>Updated At</label>
-                                            <input type="date" name="updated_at" class="form-control">
+                                            <input type="date" value="{{ Request()->updated_at }}" name="updated_at"
+                                                class="form-control">
                                         </div>
 
                                         <div style="clear:both;"></div>
