@@ -58,4 +58,14 @@ class ExpenseController extends Controller
         $data['getRecord'] = ExpenseModel::find($id);
         return view('expense.edit', $data);
     }
+
+    public function update($id, Request $request)
+    {
+        $save = ExpenseModel::find($id);
+        $save->description = trim($request->description);
+        $save->amount = trim($request->amount);
+        $save->save();
+
+        return redirect('admin/expense')->with('success', 'Expense successfully updated.');
+    }
 }
