@@ -8,9 +8,10 @@ use App\Models\SupplierModel;
 
 class PurchaseController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        return view('purchase.list');
+        $data['getRecord'] = PurchaseModel::getRecord();
+        return view('purchase.list', $data);
     }
 
     public function add()
