@@ -10,4 +10,9 @@ class PurchaseController extends Controller
     {
         return view('purchase.list');
     }
+
+    public function add()
+    {
+        return view('purchase.add');
+    }
 }
