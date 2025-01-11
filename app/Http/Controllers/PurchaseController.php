@@ -31,4 +31,11 @@ class PurchaseController extends Controller
 
         return redirect('admin/purchase')->with('success', 'Purchase successfully created.');
     }
+
+    public function edit($id)
+    {
+        $data['getRecord'] = SupplierModel::get();
+        $data['getRecordValue'] = PurchaseModel::find($id);
+        return view('purchase.edit', $data);
+    }
 }
