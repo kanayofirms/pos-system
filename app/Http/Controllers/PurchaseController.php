@@ -38,4 +38,16 @@ class PurchaseController extends Controller
         $data['getRecordValue'] = PurchaseModel::find($id);
         return view('purchase.edit', $data);
     }
+
+    public function update($id, Request $request){
+        $save = PurchaseModel::find($id);
+        $save->supplier_id = trim($request->supplier_id);
+        $save->total_item = trim($request->total_item);
+        $save->total_price = trim($request->total_price);
+        $save->discount = trim($request->discount);
+        $save->save();
+
+        return redirect('admin/purchase')->with('success', 'Record successfully updated.');
+
+    }
 }
