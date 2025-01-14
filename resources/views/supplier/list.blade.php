@@ -33,7 +33,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-md-1">
-                                            <label for="">ID</label>
+                                            <label>ID</label>
                                             <input type="text" value="{{ Request()->id }}" name="id"
                                                 class="form-control" placeholder="ID">
                                         </div>
@@ -93,8 +93,10 @@
                             <div class="card-header">
                                 <h3 class="card-title">Supplier List</h3>
                                 <div class="card-tools">
-                                    <a href="{{ url('admin/supplier/add') }}" class="btn btn-sm btn-primary">Add
-                                        Supplier</a>
+                                    <ul class="pagination pagination-sm float-end">
+                                        <a href="{{ url('admin/supplier/add') }}" class="btn btn-sm btn-primary">Add
+                                            Supplier</a>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="card-body">
