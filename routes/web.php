@@ -63,6 +63,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/purchase/add', [PurchaseController::class, 'store']);
     Route::get('admin/purchase/edit/{id}', [PurchaseController::class, 'edit']);
     Route::post('admin/purchase/edit/{id}', [PurchaseController::class, 'update']);
+    Route::get('admin/purchase/delete/{id}', [PurchaseController::class, 'delete']);
     // Purchase end
 });
 
