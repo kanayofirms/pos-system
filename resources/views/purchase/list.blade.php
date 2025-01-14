@@ -132,15 +132,21 @@
                                                 <td>{{ number_format($TotalPrice, 2) }}</td>
                                                 <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                 <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
-                                                <td class="d-flex justify-content-between">
-                                                    <!-- Add actions here, e.g., Edit/Delete buttons -->
-                                                    <a href="{{ url('admin/purchase/edit/' . $value->id) }}"
-                                                        class="btn btn-sm btn btn-success">Edit</a>
+                                                <td>
+                                                    <div class="d-flex justify-content-between gap-2">
+                                                        <a href="{{ url('admin/purchase/edit/' . $value->id) }}"
+                                                            class="btn btn-sm btn-success">
+                                                            Edit
+                                                        </a>
 
-                                                    <a href="{{ url('admin/purchase/delete/' . $value->id) }}"
-                                                        class="btn btn-sm btn btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                                        <a href="{{ url('admin/purchase/delete/' . $value->id) }}"
+                                                            class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete?')">
+                                                            Delete
+                                                        </a>
+                                                    </div>
                                                 </td>
+
                                             </tr>
                                         @empty
                                             <tr>
