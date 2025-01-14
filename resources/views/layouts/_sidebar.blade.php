@@ -50,7 +50,9 @@
                             <p>Expenses</p>
                         </a> </li>
 
-                    <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon fa fa-download"></i>
+                    <li class="nav-item"> <a href="{{ url('admin/purchase') }}"
+                            class="nav-link @if (Request::segment(2) == 'purchase') active @endif"> <i
+                                class="nav-icon fa fa-download"></i>
                             <p>Purchase</p>
                         </a> </li>
 
