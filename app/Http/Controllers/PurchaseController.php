@@ -39,7 +39,8 @@ class PurchaseController extends Controller
         return view('purchase.edit', $data);
     }
 
-    public function update($id, Request $request){
+    public function update($id, Request $request)
+    {
         $save = PurchaseModel::find($id);
         $save->supplier_id = trim($request->supplier_id);
         $save->total_item = trim($request->total_item);
@@ -49,5 +50,15 @@ class PurchaseController extends Controller
 
         return redirect('admin/purchase')->with('success', 'Record successfully updated.');
 
+    }
+
+    public function delete($id)
+    {
+        // $recordDelete = PurchaseModel::find($id);
+        $recordDelete = PurchaseModel::find($id);
+        $recordDelete->delete();
+
+
+        return redirect()->back()->with('error', 'Record successfully deleted.');
     }
 }
