@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SupplierModel;
+use App\Models\PurchaseModel;
 
 class SupplierController extends Controller
 {
@@ -17,6 +18,9 @@ class SupplierController extends Controller
     {
         $deleteRecord = SupplierModel::getSingle($id);
         $deleteRecord->delete();
+
+        PurchaseModel::where('purchase.supplier_id', '=', $id)->delete();
+
 
         return redirect('admin/supplier')->with('error', 'Supplier successfully deleted.');
     }
