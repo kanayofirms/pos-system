@@ -72,6 +72,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/sales/add', [SalesController::class, 'add']);
     Route::post('admin/sales/add', [SalesController::class, 'store']);
     Route::get('admin/sales/edit/{id}', [SalesController::class, 'edit']);
+    Route::post('admin/sales/edit/{id}', [SalesController::class, 'update']);
     // Sales end
 });
 
