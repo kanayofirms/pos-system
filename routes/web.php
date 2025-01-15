@@ -74,6 +74,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/sales/edit/{id}', [SalesController::class, 'edit']);
     Route::post('admin/sales/edit/{id}', [SalesController::class, 'update']);
     Route::get('admin/sales/delete/{id}', [SalesController::class, 'delete']);
+
+    Route::get('admin/sales/all_delete', [SalesController::class, 'truncate']);
     // Sales end
 });
 
