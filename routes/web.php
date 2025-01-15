@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -39,14 +40,14 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/member/delete/{id}', [MemberController::class, 'delete']);
     // Member end
 
-    // Supplier start 
+    // Supplier start
     Route::get('admin/supplier', [SupplierController::class, 'index']);
     Route::get('admin/supplier/add', [SupplierController::class, 'add']);
     Route::post('admin/supplier/add', [SupplierController::class, 'store']);
     Route::get('admin/supplier/edit/{id}', [SupplierController::class, 'edit']);
     Route::post('admin/supplier/edit/{id}', [SupplierController::class, 'update']);
     Route::get('admin/supplier/delete/{id}', [SupplierController::class, 'delete']);
-    // Supplier end 
+    // Supplier end
 
     // Expense start
     Route::get('admin/expense', [ExpenseController::class, 'index']);
@@ -65,6 +66,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/purchase/edit/{id}', [PurchaseController::class, 'update']);
     Route::get('admin/purchase/delete/{id}', [PurchaseController::class, 'delete']);
     // Purchase end
+
+    // Sales start
+    Route::get('admin/sales', [SalesController::class, 'index']);
+    // Sales end
 });
 
 Route::group(['middleware' => 'user'], function () {
