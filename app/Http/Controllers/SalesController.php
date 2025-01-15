@@ -46,4 +46,18 @@ class SalesController extends Controller
         $data['getEdit'] = SalesModel::find($id);
         return view('sales.edit', $data);
     }
+
+    public function update($id, Request $request)
+    {
+        $save = SalesModel::find($id);
+        $save->member_id = trim($request->member_id);
+        $save->total_item = trim($request->total_item);
+        $save->total_price = trim($request->total_price);
+        $save->discount = trim($request->discount);
+        $save->accepted = trim($request->accepted);
+        $save->user_id = trim($request->user_id);
+        $save->save();
+
+        return redirect('admin/sales')->with('success', 'Sales successfully updated.');
+    }
 }
