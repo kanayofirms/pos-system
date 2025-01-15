@@ -73,6 +73,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/sales/add', [SalesController::class, 'store']);
     Route::get('admin/sales/edit/{id}', [SalesController::class, 'edit']);
     Route::post('admin/sales/edit/{id}', [SalesController::class, 'update']);
+    Route::get('admin/sales/delete/{id}', [SalesController::class, 'delete']);
     // Sales end
 });
 
