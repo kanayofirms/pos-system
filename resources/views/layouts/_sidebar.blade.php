@@ -56,7 +56,9 @@
                             <p>Purchase</p>
                         </a> </li>
 
-                    <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon fa fa-dollar"></i>
+                    <li class="nav-item"> <a href="{{ url('admin/sales') }}"
+                            class="nav-link @if (Request::segment(2) == 'sales') active @endif"> <i
+                                class="nav-icon fa fa-dollar"></i>
                             <p>Sales List</p>
                         </a> </li>
 
