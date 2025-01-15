@@ -38,4 +38,12 @@ class SalesController extends Controller
 
         return redirect('admin/sales')->with('success', 'Sales successfully created.');
     }
+
+    public function edit($id)
+    {
+        $data['getMember'] = MemberModel::get();
+        $data['getUser'] = User::where('is_role', '=', 2)->get();
+        $data['getEdit'] = SalesModel::find($id);
+        return view('sales.edit', $data);
+    }
 }
