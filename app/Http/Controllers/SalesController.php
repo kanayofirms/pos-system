@@ -9,6 +9,12 @@ use App\Models\User;
 
 class SalesController extends Controller
 {
+    public function truncate()
+    {
+        SalesModel::truncate();
+        // DB::table('sales')->truncate();
+        return redirect()->back()->with('error', 'All Sales Record Successfully Deleted.');
+    }
     public function index(Request $request)
     {
         $getRecord = SalesModel::select('sales.*', 'member.name_member', 'users.name')
