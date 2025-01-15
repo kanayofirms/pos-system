@@ -11,10 +11,35 @@ class SalesController extends Controller
 {
     public function index(Request $request)
     {
-        $data['getRecord'] = SalesModel::select('sales.*', 'member.name_member', 'users.name')
+        $getRecord = SalesModel::select('sales.*', 'member.name_member', 'users.name')
             ->join('member', 'member.id', '=', 'sales.member_id')
-            ->join('users', 'users.id', '=', 'sales.user_id')
-            ->get();
+            ->join('users', 'users.id', '=', 'sales.user_id');
+
+        // Search start
+        if ($request->id) {
+            $getRecord = $getRecord->where('sales.id', '=', $request->id);
+        }
+
+        if ($request->member_id) {
+            $getRecord = $getRecord->where('member.name_member', 'like', '%' . $request->member_id . '%');
+        }
+
+        if ($request->total_item) {
+            $getRecord = $getRecord->where('sales.total_item', 'like', '%' . $request->id . '%');
+        }
+
+        if ($request->accepted) {
+            $getRecord = $getRecord->where('sales.accepted', '=', $request->accepted);
+        }
+
+        if ($request->user_id) {
+            $getRecord = $getRecord->where('users.name', 'like', '%' . $request->user_id . '%');
+        }
+        // Search end
+
+        $getRecord = $getRecord->paginate(20);
+
+        $data['getRecord'] = $getRecord;
         return view('sales.list', $data);
     }
 
