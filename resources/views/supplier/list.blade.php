@@ -122,13 +122,16 @@
                                                 <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                                 <td>{{ date('d-m-Y', strtotime($value->updated_at)) }}</td>
                                                 <td>
-                                                    <!-- Add actions here, e.g., Edit/Delete buttons -->
-                                                    <a href="{{ url('admin/supplier/edit/' . $value->id) }}"
-                                                        class="btn btn-sm btn btn-success">Edit</a>
+                                                    <div class="d-flex justify-content-between gap-2">
 
-                                                    <a href="{{ url('admin/supplier/delete/' . $value->id) }}"
-                                                        class="btn btn-sm btn btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                                        <!-- Add actions here, e.g., Edit/Delete buttons -->
+                                                        <a href="{{ url('admin/supplier/edit/' . $value->id) }}"
+                                                            class="btn btn-sm btn btn-success">Edit</a>
+
+                                                        <a href="{{ url('admin/supplier/delete/' . $value->id) }}"
+                                                            class="btn btn-sm btn btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @empty
