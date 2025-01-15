@@ -60,4 +60,10 @@ class SalesController extends Controller
 
         return redirect('admin/sales')->with('success', 'Sales successfully updated.');
     }
+
+    public function delete($id)
+    {
+        SalesModel::find($id)->delete();
+        return redirect()->back()->with('error', 'Record successfully deleted.');
+    }
 }
