@@ -93,7 +93,10 @@
                             <div class="card-header">
                                 <h3 class="card-title">Member List</h3>
                                 <div class="card-tools">
-                                    <a href="{{ url('admin/member/add') }}" class="btn btn-sm btn-primary">Add Member</a>
+                                    <ul class="pagination pagination-sm float-end">
+                                        <a href="{{ url('admin/member/add') }}" class="btn btn-sm btn-primary">Add
+                                            Member</a>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="card-body">
